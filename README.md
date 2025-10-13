@@ -38,6 +38,9 @@ Este repositório foi desenvolvido para a disciplina de **Estrutura de Dados** d
 
 ---
 
+## Documentações utilizadas:
+- [Python Subprocess](https://docs.python.org/3/library/subprocess.html): Como executar comandos e subprocessos com Python. Utilizada para conhecer como compilar e executar os arquivos em java
+
 ## Contato
 
 **Contribuidor:**  
