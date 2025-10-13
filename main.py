@@ -1,1 +1,29 @@
-print("Hello World!")
+import subprocess
+import os
+
+print("Compilando arquivos java")
+current_directory = os.getcwd()
+main_file_java = os.path.join(current_directory, "vetor", "Main.java")
+print(f"Caminho do arquivo Main: {main_file_java}")
+
+print("Executando compilação do arquivo")
+result_compile = subprocess.run(['javac', main_file_java], capture_output=True)
+
+print(f"Resultado da compilação: {result_compile.returncode}")
+if result_compile.returncode == 0:
+    print("Executando classe Main")
+    main_file_class = os.path.join(current_directory, "vetor", "Main")
+    print(f"Caminho do arquivo Main.class: {main_file_class}")
+
+    print("Executando programa java:")
+    execute_main_class = subprocess.run(['java', '-cp', './vetor', 'Main'], capture_output=True, text=True)
+    print(f"Resultado da compilação: {execute_main_class.returncode}")
+
+    if execute_main_class.returncode == 0:
+        print(f"Programa executado com sucesso! Logs de saída:\n{execute_main_class.stdout}")
+
+        message_hello_worlds = execute_main_class.stdout.splitlines()
+    else:
+        raise Exception(f"Falha ao executar programa Java!\n{execute_main_class.stderr}")
+else:
+    raise Exception(f"Falha ao copilar arquivo Main.java!\n{result_compile.stderr}")
