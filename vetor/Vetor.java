@@ -1,11 +1,16 @@
 import java.util.Random;
 
 public class Vetor {
-    int[] vetor;
-    int occupation;
+    private int[] vetor;
+    private int occupation;
 
     public Vetor() {
-        this.occupation = 0;
+        this.occupation = 10;
+        this.vetor = new int[this.occupation];
+
+        for (int i = 0; i < this.occupation; i++) {
+            this.vetor[i] = new Random().nextInt(this.occupation);
+        }
     };
 
     public Vetor(int size) {
@@ -21,12 +26,12 @@ public class Vetor {
         return this.occupation == 0;
     }
 
-    private void duplicateVetorSize() {
-        this.resizeVetor(this.vetor.length * 2);
+    public boolean isFull() {
+        return this.occupation == this.vetor.length;
     }
 
-    private void reduceToHalfOfVetor() {
-        this.resizeVetor(this.vetor.length / 2);
+    private void duplicateVetorSize() {
+        this.resizeVetor(this.vetor.length * 2);
     }
 
     private void resizeVetor(int size) {
@@ -50,7 +55,7 @@ public class Vetor {
     }
 
     public void insert(int item) {
-        if (!this.isEmpty()) {
+        if (this.isFull()) {
             this.duplicateVetorSize();
         }
 
@@ -94,7 +99,7 @@ public class Vetor {
     }
 
     public void insertionSort() {
-        for (int i = 1; i < this.vetor.length; i++) {
+        for (int i = 1; i < this.vetor.length - 1; i++) {
             int x = this.vetor[i];
             int j;
             for (j = i - 1; j >= 0 && this.vetor[i] > x; --i) {
@@ -129,5 +134,18 @@ public class Vetor {
         this.vetor[r] = this.vetor[i];
         this.vetor[i] = aux;
         return i;
+    }
+
+    public int[] getVetor() {
+        return this.vetor;
+    }
+
+    @Override
+    public String toString() {
+        String vetorToString = "tamanho = " + this.vetor.length + "\nocupacao = " + this.occupation + "\n";
+        for (int i = 0; i < this.vetor.length; i++) {
+            vetorToString += this.vetor[i] + " ";
+        }
+        return vetorToString;
     }
 }
