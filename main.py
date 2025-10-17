@@ -1,13 +1,22 @@
 import subprocess
 import os
+import glob
+import re
+import sys
 
 print("Compilando arquivos java")
 current_directory = os.getcwd()
-main_file_java = os.path.join(current_directory, "vetor", "Main.java")
-print(f"Caminho do arquivo Main: {main_file_java}")
+
+java_files = glob.glob(os.path.join(current_directory, "vetor", "*.java"))
+if not java_files:
+    raise Exception("Nenhum arquivo .java encontrado em ./vetor. Verifique o caminho.")
+
+print("Arquivos encontrados para compilação:")
+for f in java_files:
+    print("  ", f)
 
 print("Executando compilação do arquivo")
-result_compile = subprocess.run(['javac', main_file_java], capture_output=True)
+result_compile = subprocess.run(['javac'] + java_files, capture_output=True)
 
 print(f"Resultado da compilação: {result_compile.returncode}")
 if result_compile.returncode == 0:
