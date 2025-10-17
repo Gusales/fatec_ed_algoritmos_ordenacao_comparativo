@@ -70,18 +70,12 @@ public class Vetor {
                 if (this.vetor[j] < this.vetor[position]) {
                     position = j;
                 }
-
-                if (position != i) {
-                    int aux = this.vetor[position];
-                    this.vetor[position] = this.vetor[i];
-                    this.vetor[i] = aux;
-                }
             }
 
             if (position != i) {
-                int oldNum = this.vetor[position];
+                int aux = this.vetor[position];
                 this.vetor[position] = this.vetor[i];
-                this.vetor[i] = oldNum;
+                this.vetor[i] = aux;
             }
         }
     }
