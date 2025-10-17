@@ -136,7 +136,7 @@ public class Vetor {
 
     @Override
     public String toString() {
-        String vetorToString = "tamanho = " + this.vetor.length + "\nocupacao = " + this.occupation + "\n";
+        String vetorToString = "";
         for (int i = 0; i < this.vetor.length; i++) {
             vetorToString += this.vetor[i] + " ";
         }
