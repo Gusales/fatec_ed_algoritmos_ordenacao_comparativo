@@ -99,13 +99,13 @@ public class Vetor {
     }
 
     public void insertionSort() {
-        for (int i = 1; i < this.vetor.length - 1; i++) {
+        for (int i = 1; i < this.vetor.length; ++i) {
             int x = this.vetor[i];
             int j;
-            for (j = i - 1; j >= 0 && this.vetor[i] > x; --i) {
-                this.vetor[i + 1] = this.vetor[i];
+            for (j = i - 1; j >= 0 && this.vetor[j] > x; --j) {
+                this.vetor[j + 1] = this.vetor[j];
             }
-            this.vetor[i + 1] = x;
+            this.vetor[j + 1] = x;
         }
     }
 
