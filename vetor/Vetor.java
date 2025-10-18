@@ -5,20 +5,22 @@ public class Vetor {
     private int occupation;
 
     public Vetor() {
-        this.occupation = 10;
+        this.occupation = 0;
         this.vetor = new int[this.occupation];
+        int randomInt = new Random().nextInt(this.occupation);
 
-        for (int i = 0; i < this.occupation; i++) {
-            this.vetor[i] = new Random().nextInt(this.occupation);
+        for (int i = 0; i < 10; i++) {
+            this.vetor[i] = randomInt;
         }
     };
 
     public Vetor(int size) {
         this.vetor = new int[size];
         this.occupation = 0;
+        Random random = new Random();
 
         for (int i = 0; i < size; i++) {
-            this.vetor[i] = new Random().nextInt(size);
+            this.vetor[i] = random.nextInt(size);
         }
     }
 

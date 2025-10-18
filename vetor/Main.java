@@ -1,38 +1,44 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Vetor vetor = new Vetor();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite a capacidade do vetor, digite 0 para sair: ");
+        int capacidade = input.nextInt();
+        while (capacidade > 0) {
+            System.out.printf("capacidade: %d\n", capacidade);
+            Vetor vetor = new Vetor(capacidade);
 
-        System.out.println("Base Vetor: ");
-        System.out.println(vetor);
+            Vetor insertionSortVetorTest = vetor.clone();
+            Vetor selectionSortVetorTest = vetor.clone();
+            Vetor bubbleSortVetorTest = vetor.clone();
+            Vetor quickSortVetorTest = vetor.clone();
 
-        Vetor insertionSortVetorTest = vetor.clone();
-        Vetor selectionSortVetorTest = vetor.clone();
-        Vetor bubbleSortVetorTest = vetor.clone();
-        Vetor quickSortVetorTest = vetor.clone();
+            long timeAtStartInsertionSort = System.nanoTime();
+            insertionSortVetorTest.insertionSort();
+            long timeAtEndInsertionSort = System.nanoTime();
+            System.out.printf("InsertionSort: %d\n", timeAtEndInsertionSort - timeAtStartInsertionSort);
 
-        System.out.println("Execute sort in base vetor\n");
+            long timeAtStartSelectionSort = System.nanoTime();
+            selectionSortVetorTest.selectionSort();
+            long timeAtEndSelectionSort = System.nanoTime();
+            System.out.printf("SelectionSort: %d\n", timeAtEndSelectionSort - timeAtStartSelectionSort);
 
-        insertionSortVetorTest.insertionSort();
-        System.out.println("insertionSortVetorTest: ");
-        System.out.println(insertionSortVetorTest);
+            long timeAtStartBubbleSort = System.nanoTime();
+            bubbleSortVetorTest.bubbleSort();
+            long timeAtEndBubbleSort = System.nanoTime();
+            System.out.printf("BubbleSort: %d\n", timeAtEndBubbleSort - timeAtStartBubbleSort);
 
-        System.out.println("-------------------------------------------------");
+            long timeAtStartQuickSort = System.nanoTime();
+            quickSortVetorTest.quickSort(0, quickSortVetorTest.getVetor().length - 1);
+            long timeAtEndQuickSort = System.nanoTime();
+            System.out.printf("QuickSort: %d\n", timeAtEndQuickSort - timeAtStartQuickSort);
 
-        selectionSortVetorTest.selectionSort();
-        System.out.println("selectionSortVetorTest: ");
-        System.out.println(selectionSortVetorTest);
+            System.out.println("Digite a capacidade do vetor novamente, digite 0 para sair:");
+            capacidade = input.nextInt();
+        }
 
-        System.out.println("-------------------------------------------------");
-
-        bubbleSortVetorTest.bubbleSort();
-        System.out.println("bubbleSortVetorTest: ");
-        System.out.println(bubbleSortVetorTest);
-
-        System.out.println("-------------------------------------------------");
-
-        quickSortVetorTest.quickSort(0, vetor.getVetor().length - 1);
-        System.out.println("quickSortVetorTest: ");
-        System.out.println(quickSortVetorTest);
+        input.close();
 
     }
 }
